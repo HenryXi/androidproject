@@ -1,9 +1,12 @@
 package com.example.activitylifecycletest;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +17,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG,"onCreate");
         setContentView(R.layout.activity_main);
+        if(savedInstanceState!=null){
+            String tempData = savedInstanceState.getString("data_key");
+            Log.d(TAG,tempData);
+        }
 
         Button startNormalActivity = findViewById(R.id.start_normal_activity);
         Button startDialogActivity = findViewById(R.id.start_dialog_activity);
@@ -69,5 +77,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
         Log.d(TAG,"onRestart");
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        String tempData="Something you just typed";
+        outState.putString("data_key", tempData);
     }
 }
