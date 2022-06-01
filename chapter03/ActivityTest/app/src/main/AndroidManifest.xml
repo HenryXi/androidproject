@@ -13,28 +13,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ActivityTest"
         tools:targetApi="31">
-        <activity android:name=".ThirdActivity"
-            android:exported="true">
+        <activity
+            android:name=".BaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ThirdActivity"
+            android:exported="true"
+            android:label="This is ThirdActivity">
             <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
         <activity
             android:name=".SecondActivity"
-            android:exported="false">
+            android:exported="false"
+            android:label="This is SecondActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="com.example.activitytest.ACTION_START" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.example.activitytest.MY_CATEGORY" />
             </intent-filter>
-        </activity>
+        </activity> <!-- todo 这里launchMode用singleTop之后Logcat里面显示了两个onCreate日志,不明白为啥会调用两次onCreate -->
         <activity
             android:name=".FirstActivity"
             android:exported="true"
-            android:label="This is FirstActivity">
+            android:label="This is FirstActivity"
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
