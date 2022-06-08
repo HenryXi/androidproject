@@ -1,7 +1,6 @@
 *.iml
 .gradle
 /local.properties
-# todo 不知道这里为啥AS没有把整个.idea文件夹ignore掉
 .idea
 .DS_Store
 /build
